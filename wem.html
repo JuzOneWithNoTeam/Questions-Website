@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .title {
+            font-size: 24px;
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .title:hover {
+            color: darkblue;
+        }
+        .fake-link {
+            font-size: 18px;
+            color: green;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .fake-link:hover {
+            color: darkgreen;
+        }
+        .counter {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .banned {
+            display: none;
+            font-size: 24px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div class="counter" id="counter">3</div>
+        <p class="title" onclick="window.location.href='https://www.youtube.com/channel/UCuRltl0MQBsgizK5_C1j6KQ'">
+            There is no channel
+        </p>
+        <p class="fake-link" onclick="window.location.href='https://www.fakeyoutube.com/'">
+            Visit Fake YouTube
+        </p>
+    </div>
+    <div class="banned" id="banned-message">
+        <p>You are banned unless you refresh.</p>
+    </div>
+
+    <script>
+        let countdown = 3;
+        const counterElement = document.getElementById('counter');
+        const contentElement = document.getElementById('content');
+        const bannedMessageElement = document.getElementById('banned-message');
+
+        function updateCounter() {
+            counterElement.textContent = countdown;
+            countdown--;
+
+            if (countdown < 0) {
+                // Hide the original content and show the banned message
+                contentElement.style.display = 'none';
+                bannedMessageElement.style.display = 'block';
+                clearInterval(interval); // Stop the countdown
+            }
+        }
+
+        // Update counter every second
+        const interval = setInterval(updateCounter, 1000);
+    </script>
+</body>
+</html>
